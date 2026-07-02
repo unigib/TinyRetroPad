@@ -73,7 +73,7 @@ static char FindWhat[128] = {0};
 static char ReplaceWith[128] = {0};
 
 static const char UntitledText[] = "Untitled";
-static const char NotepadTail[] = " - TinyRetroPad";
+static const char NotepadTail[] = " - TinyRetroPad - C Version";
 static const char FileFilter[] = "All Files\0*.*\0";
 static const char AboutCap[] = "TinyRetroPad";
 static const char AboutText[] = "TinyRetroPad - tiny notepad-style editor";
@@ -425,7 +425,7 @@ static void PrintDoc(void)
     HDC hPrnDC = pd.hDC;
     DOCINFOA docInfo = {0};
     docInfo.cbSize = sizeof(docInfo);
-    docInfo.lpszDocName = "TinyRetroPad";
+    docInfo.lpszDocName = "TinyRetroPad - C Version";
     StartDocA(hPrnDC, &docInfo);
 
     FORMATRANGE fmt = {0};

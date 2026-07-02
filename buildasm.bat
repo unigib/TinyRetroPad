@@ -1,7 +1,7 @@
 ml /nologo /c /coff /Cp /IC:\masm32\include trpad.asm
 
 crinkler trpad.obj ^
-  /OUT:trpad.exe ^
+  /OUT:trpad-asm.exe ^
   /ENTRY:MainEntry ^
   /SUBSYSTEM:WINDOWS ^
   /NOINITIALIZERS ^
