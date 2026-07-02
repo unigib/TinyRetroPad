@@ -8,14 +8,26 @@
 #include <stdbool.h>
 #include <wchar.h>
 
+#define _NO_CRT_STDIO_INLINE
+
 #define WindowWidth      800
 #define WindowHeight     640
 #define IDC_EDIT         1001
+#ifndef EM_EXLIMITTEXT
 #define EM_EXLIMITTEXT   (WM_USER+53)
+#endif
+#ifndef EM_SETCHARFORMAT
 #define EM_SETCHARFORMAT (WM_USER+68)
+#endif
+#ifndef EM_SETEVENTMASK
 #define EM_SETEVENTMASK  (WM_USER+69)
+#endif
+#ifndef EM_SETTARGETDEVICE
 #define EM_SETTARGETDEVICE (WM_USER+72)
+#endif
+#ifndef SCF_ALL
 #define SCF_ALL          0x00000004
+#endif
 #define ENM_CHANGE       0x00000001
 #define CFM_FACE         0x20000000
 #define MAX_CMD_PATH     128
@@ -126,7 +138,9 @@ static void BuildTitle(void)
         base = tail;
     }
 
-    snprintf(TitleBuf, MAX_TITLE, "%s%s", base, NotepadTail);
+    wsprintfA(TitleBuf, "%s%s", base, NotepadTail);
+
+    //snprintf(TitleBuf, MAX_TITLE, "%s%s", base, NotepadTail);
 }
 
 static void ApplyTitle(void)
@@ -896,7 +910,14 @@ static LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     return DefWindowProcA(hWnd, uMsg, wParam, lParam);
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+void MyMain(void) 
+{
+    WinMain(GetModuleHandleA(NULL), NULL, GetCommandLineA(), SW_SHOWNORMAL);
+}
+
+
+
+int __stdcall WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
     (void)hPrevInstance;
     (void)lpCmdLine;
